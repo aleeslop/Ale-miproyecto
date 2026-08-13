@@ -13,7 +13,6 @@
   --blanco: #ffffff;
 }
 
-/* ===== General ===== */
 
 * {
   box-sizing: border-box;
@@ -57,8 +56,6 @@ header p {
   opacity: 0.9;
 }
 
-/* ===== Navegación ===== */
-
 nav {
   background: white;
   display: flex;
@@ -93,15 +90,12 @@ nav a:hover {
   color: white;
 }
 
-/* ===== Contenido ===== */
 
 main {
   max-width: 1000px;
   margin: auto;
   padding: 50px 20px;
 }
-
-/* ===== Bienvenida ===== */
 
 .hero {
   text-align: center;
@@ -203,7 +197,6 @@ main {
   font-size: 14px;
 }
 
-/* ===== Tarjetas ===== */
 
 .card {
   background: white;
@@ -229,8 +222,6 @@ main {
 .card p {
   color: var(--texto-suave);
 }
-
-/* ===== Botón ===== */
 
 button,
 .boton {
@@ -263,8 +254,6 @@ button:hover,
 
   transform: translateY(-2px);
 }
-
-/* ===== Formulario ===== */
 
 form {
   display: flex;
@@ -301,7 +290,6 @@ input:focus {
     0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* ===== Mensajes ===== */
 
 #errores {
   color: #dc2626;
