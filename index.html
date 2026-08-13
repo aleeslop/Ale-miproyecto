@@ -2,62 +2,144 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Proyecto Escuela - Alejandra</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tec Superior Región Sierra - Alejandra</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
   <header>
-    <h2>Escuela</h2>
+    <h2>Tec Superior Región Sierra</h2>
+    <p>Escuela de Ingeniería Informática</p>
   </header>
 
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="sobre-nosotros.html" target="_blank">Sobre nosotros</a>
+    <a href="#formulario">Formulario</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
   <main>
-    <h1>Bienvenidos</h1>
-    <p>Esta escuela busca formar estudiantes en programación y colaboración.</p>
-    <p>Queremos que todos aprendan buenas prácticas y trabajo en equipo.</p>
 
-    <ul>
-      <li>Git y GitHub</li>
-      <li>Colaboración en proyectos</li>
-      <li>Buenas prácticas de desarrollo</li>
-    </ul>
+    <!-- Bienvenida -->
+    <section id="inicio" class="hero">
+      <h1>Bienvenidos</h1>
 
-    <section id="sobre-nosotros">
-      <h2>Sobre nosotros</h2>
-      <p>Somos una escuela enfocada en programación y colaboración.</p>
-      <button id="miBoton">Haz clic aquí</button>
+      <p>
+        Esta escuela busca formar estudiantes en programación,
+        tecnología y colaboración.
+      </p>
+
+      <p>
+        Queremos que todos aprendan buenas prácticas,
+        trabajo en equipo y desarrollo de proyectos.
+      </p>
     </section>
 
-    
-    <section id="formulario">
+    <section class="temas">
+
+      <h2>Lo que aprenderás</h2>
+
+      <div class="temas-lista">
+
+        <div class="tema">
+          <img src="github.png"
+               alt="Git y GitHub">
+          <h3>Git y GitHub</h3>
+          <p>Aprende a utilizar repositorios y controlar versiones.</p>
+        </div>
+
+        <div class="tema">
+          <img src="colaboracion-en-equipo.png"
+               alt="Colaboración">
+          <h3>Colaboración en proyectos</h3>
+          <p>Trabaja en equipo y desarrolla proyectos colaborativos.</p>
+        </div>
+
+        <div class="tema">
+          <img src="practica.png"
+               alt="Buenas prácticas">
+          <h3>Buenas prácticas</h3>
+          <p>Aprende técnicas para desarrollar código de calidad.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sobre nosotros (pendiente) -->
+    <section class="card">
+      <h2>Sobre nosotros</h2>
+
+      <p>
+        Conoce más sobre nuestra escuela, nuestras instalaciones,
+        actividades y la comunidad estudiantil.
+      </p>
+
+      <a class="boton"
+         href="sobre-nosotros.html"
+         target="_blank">
+         Conocer más
+      </a>
+    </section>
+
+    <section id="formulario" class="card">
+
       <h2>Formulario de inscripción</h2>
+
       <form id="formEscuela">
+
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre"><br><br>
+        <input type="text" id="nombre" name="nombre" required>
 
         <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" name="email"><br><br>
+        <input type="email" id="email" name="email" required>
 
         <label for="matricula">Matrícula:</label>
-        <input type="text" id="matricula" name="matricula"><br><br>
+        <input type="text" id="matricula" name="matricula" required>
 
         <button type="submit">Enviar</button>
+
       </form>
 
       <p id="errores"></p>
       <p id="exito"></p>
+
     </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="card contacto">
+
+      <h2>Contacto</h2>
+
+      <p>
+        ¿Necesitas comunicarte con nosotros?
+      </p>
+
+      <p>
+        <strong>Correo:</strong>
+        contacto@tecregionsierra.edu.mx
+      </p>
+
+      <p>
+        <strong>Teléfono:</strong> 9000000
+      </p>
+
+      <p>
+        <strong>Domicilio:</strong>
+        Carretera Teapa-Tacotalpa, Tabasco, México.
+      </p>
+
+    </section>
+
   </main>
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#sobre-nosotros">Sobre nosotros</a>
-    <a href="#formulario">Formulario</a>
-    <a href="#">Contacto</a>
-  </nav>
 
   <footer>
     <p>Creado por Alejandra</p>
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>
