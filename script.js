@@ -22,8 +22,8 @@ form.addEventListener("submit", (event) => {
     mensajesError.push("Correo electrónico inválido.");
   }
 
-  if (matricula && matricula.length < 8) {
-    mensajesError.push("Matrícula inválida: debe tener al menos 8 caracteres.");
+  if (matricula && matricula.length < 5) {
+    mensajesError.push("Matrícula inválida, debe tener al menos 5 caracteres.");
   }
 
   if (mensajesError.length > 0) {
