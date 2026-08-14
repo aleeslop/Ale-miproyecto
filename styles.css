@@ -290,7 +290,6 @@ input:focus {
     0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-
 #errores {
   color: #dc2626;
 
@@ -321,8 +320,6 @@ input:focus {
   color: var(--azul-900);
 
   font-size: 35px;
-
-  margin-bottom: 10px;
 }
 
 
