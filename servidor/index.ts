@@ -1,9 +1,17 @@
-import type { Request, Response } from 'express';
-const express = require('express');
+import express, { Request, Response } from 'express';
+
 const app = express();
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hola desde escuela');
+  res.send('Hola desde escuela con TypeScript');
+});
+
+app.get('/alumnos', (req: Request, res: Response) => {
+  res.json([
+    { nombre: 'Ruben', matricula: '22E31' },
+    { nombre: 'Luis', matricula: '22E32' },
+    { nombre: 'Mireya', matricula: '22E33' }
+  ]);
 });
 
 app.listen(3000, () => {
