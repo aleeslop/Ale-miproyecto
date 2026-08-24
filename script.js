@@ -4,8 +4,12 @@ const exito = document.querySelector("#exito");
 
 // Función para cargar alumnos del servidor
 function cargarAlumnos() {
-  fetch("http://localhost:3000/alumnos")
-    .then(res => res.json())
+  fetch("/alumnos")
+    .then(async res => {
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "No se pudieron cargar los alumnos");
+      return data;
+    })
     .then(data => {
       const lista = document.getElementById("lista");
       lista.innerHTML = "";
@@ -15,9 +19,9 @@ function cargarAlumnos() {
         lista.appendChild(li);
       });
     })
-    .catch(() => {
+    .catch(error => {
       document.getElementById("lista").innerHTML =
-        "<li style='color: red;'>Error: el servidor no responde</li>";
+      `<li style='color: red;'>${error.message}</li>`;
     });
 }
 
@@ -55,10 +59,25 @@ form.addEventListener("submit", (event) => {
     errores.textContent = mensajesError.join(" | ");
     errores.style.color = "red";
   } else {
-    exito.textContent = "Formulario enviado correctamente";
-    exito.style.color = "green";
-    document.body.style.backgroundColor = "#e0f2fe";
-    // Recargar lista de alumnos después de enviar
-    cargarAlumnos();
+    fetch("/alumnos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nombre, matricula, grado: "Pendiente" })
+    })
+      .then(async res => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "No se pudo registrar el alumno");
+        return data;
+      })
+      .then(() => {
+        exito.textContent = "Formulario enviado correctamente";
+        exito.style.color = "green";
+        document.body.style.backgroundColor = "#e0f2fe";
+        cargarAlumnos();
+      })
+      .catch(error => {
+        errores.textContent = error.message;
+        errores.style.color = "red";
+      });
   }
 });
