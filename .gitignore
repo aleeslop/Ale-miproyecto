@@ -8,3 +8,6 @@
 
 # Archivos compilados
 **/dist/
+servidor/.env
+servidor/dist/
+servidor/node_modules/
