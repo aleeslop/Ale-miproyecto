@@ -2,6 +2,31 @@ const form = document.querySelector("#formEscuela");
 const errores = document.querySelector("#errores");
 const exito = document.querySelector("#exito");
 
+// Función para cargar alumnos del servidor
+function cargarAlumnos() {
+  fetch("http://localhost:3000/alumnos")
+    .then(res => res.json())
+    .then(data => {
+      const lista = document.getElementById("lista");
+      lista.innerHTML = "";
+      data.forEach(alumno => {
+        const li = document.createElement("li");
+        li.textContent = `${alumno.nombre} - ${alumno.matricula}`;
+        lista.appendChild(li);
+      });
+    })
+    .catch(() => {
+      document.getElementById("lista").innerHTML =
+        "<li style='color: red;'>Error: el servidor no responde</li>";
+    });
+}
+
+// Cargar alumnos cuando la página carga
+document.addEventListener("DOMContentLoaded", () => {
+  cargarAlumnos();
+});
+
+// Evento del formulario
 form.addEventListener("submit", (event) => {
   event.preventDefault(); 
   errores.textContent = "";
@@ -33,5 +58,7 @@ form.addEventListener("submit", (event) => {
     exito.textContent = "Formulario enviado correctamente";
     exito.style.color = "green";
     document.body.style.backgroundColor = "#e0f2fe";
+    // Recargar lista de alumnos después de enviar
+    cargarAlumnos();
   }
 });

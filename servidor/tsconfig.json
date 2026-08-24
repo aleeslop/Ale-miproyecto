@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
+    // File Layout
     "rootDir": "./",
     "outDir": "./dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "target": "esnext",
     "types": ["node"],
@@ -24,17 +28,10 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "strict": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": false,
     "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "include": ["**/*"]
-
-
-    
-  }
+  "include": ["index.ts"]
 }
