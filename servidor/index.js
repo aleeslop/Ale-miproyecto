@@ -1,30 +1,50 @@
-"use strict";
-const { Pool } = require("pg");
+import express from "express";
+import pkg from "pg";
+const { Pool } = pkg;
 
+const app = express();
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const app = (0, express_1.default)();
-app.get('/', (req, res) => {
-    res.send('Hola desde escuela con TypeScript');
+app.use(express.json());
+
+// Simple CORS headers to allow the frontend to fetch data
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
 });
+
+// Endpoint GET
 app.get("/alumnos", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM alumnos");
-    res.json(result.rows);
+    res.json(result.rows || []);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener alumnos" });
   }
 });
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Servidor escuchando en el puerto", process.env.PORT || 3000);
+
+// Endpoint POST
+app.post("/alumnos", async (req, res) => {
+  const { nombre, matricula, grado } = req.body;
+  try {
+    const result = await pool.query(
+      "INSERT INTO alumnos (nombre, matricula, grado) VALUES ($1, $2, $3) RETURNING *",
+      [nombre, matricula, grado]
+    );
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al agregar alumno" });
+  }
 });
-//# sourceMappingURL=index.js.map
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Servidor corriendo...");
+});
