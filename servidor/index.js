@@ -1,6 +1,12 @@
 import express from "express";
 import pkg from "pg";
+import path from "path";
+import { fileURLToPath } from "url";
+
 const { Pool } = pkg;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const pool = new Pool({
@@ -9,6 +15,7 @@ const pool = new Pool({
 });
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..")));
 
 // Simple CORS headers to allow the frontend to fetch data
 app.use((req, res, next) => {
